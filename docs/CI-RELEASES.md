@@ -29,11 +29,17 @@ The workflow is [`.github/workflows/build.yml`](../.github/workflows/build.yml).
 
 See the list of [GitHub Releases](https://github.com/wesleytakatsu/Minecraft-AI-NPC/releases).
 
-No API key or personal access token is required: the publisher uses the workflow's `GITHUB_TOKEN` scoped to `contents: write` for that job.
+By default, no personal token is required: the publisher uses the workflow's `GITHUB_TOKEN`, scoped to `contents: write` for the release job. A repository secret named `RELEASE_TOKEN` can optionally replace this token when broader workflow-related authorization is needed. Never commit tokens or print them in logs.
 
-### If publishing fails with 403
+### GitHub restriction: older commits that changed workflows
 
-Check **Settings → Actions → General → Workflow permissions** and the repository/organization Actions policy. The release job explicitly requests `contents: write`, but a restrictive administrative policy may prevent it. Do not add a personal access token unless strictly required.
+GitHub may reject `gh release create --target <older-SHA>` with **HTTP 403: Resource not accessible by integration** even when `GITHUB_TOKEN` shows `contents: write`, if the targeted commit differs from the default branch in `.github/workflows/`. This was observed while multiple workflow-editing commits were pushed before earlier CI runs finished. A subsequent release targeting the **current main HEAD** succeeded with `GITHUB_TOKEN`.
+
+If you need to guarantee a separate release for **every commit**, including superseded workflow-editing commits, create an optional **fine-grained personal access token** restricted to **this repository** with **Contents: Read and write** and **Workflows: Read and write** permissions; store it as the Actions secret `RELEASE_TOKEN` under **Settings → Secrets and variables → Actions**. Give it an expiration and rotate it periodically. An appropriately scoped GitHub App installation token with both permissions is another alternative. The workflow will prefer `RELEASE_TOKEN` if configured; otherwise it falls back to the default token.
+
+For ordinary source-only commits, the default `GITHUB_TOKEN` is normally sufficient. Never silently change the release target to `main` when building an older SHA: that would mislabel the binary. Also inspect **Settings → Actions → General → Workflow permissions** and organizational policies if you get an unrelated 403.
+
+GitHub API documentation for this restriction: https://docs.github.com/en/rest/releases/releases#create-a-release
 
 ### Releases versus workflow artifacts
 
