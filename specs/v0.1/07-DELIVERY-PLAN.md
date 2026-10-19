@@ -66,7 +66,15 @@ Já existem:
 - [#2 — Missões e cancelamento](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/2) ⇒ P3.
 - [#3 — LLM e JEV](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/3) ⇒ P5.
 
-Criar issues menores de `DigTunnel`, `Chat ACL`, `Persistência`, `GameTests` e `Release QA`, todas mencionando FR/T-IDs. Limitar PRs ao escopo de uma issue ou etapa. PR que muda comportamento atualiza as specs e testes no mesmo commit.
+Issues adicionais já criadas:
+- [#4 — Interfaces e contratos](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/4) ⇒ P0.
+- [#5 — Persistência, um NPC e propriedade](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/5) ⇒ P2.
+- [#6 — Seguir e aproximar com navegação](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/6) ⇒ P3.
+- [#7 — Túnel 1x2 e mineração real](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/7) ⇒ P4.
+- [#8 — GameTests integrados ao CI](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/8) ⇒ P6.
+- [#9 — Revisão e release estável v0.1.0](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/9) ⇒ P6.
+
+**Chat ACL** permanece na #3 e na #5, com testes T-03. Limitar PRs ao escopo de uma issue ou etapa. PR que muda comportamento atualiza as specs e testes no mesmo commit.
 
 ## Critérios de passagem
 
