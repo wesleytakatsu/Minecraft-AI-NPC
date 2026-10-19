@@ -50,7 +50,7 @@ Possible interruptions: `PAUSED`, `CANCELLED`, `FAILED`. A skill can request rep
 
 ## NPC engine investigation
 
-Evaluate Carpet Fake Players, Automatone/Baritone-derived navigation, and AltoClef/SecondBrainEngine as *possible* foundations for Fabric 1.20.1. Check compatible versions, licenses, maintainability, correctness and dedicated/integrated server behavior **before** importing code.
+Our first evaluation target is **Fabric Carpet + SecondBrainEngine**, which includes an explicit Minecraft 1.20.1 version and server-adapted Automatone/AltoClef. See [source-code findings and experiment checklist](PROJECT-RESEARCH.md). Evaluate other options if its actual runtime behavior is unreliable. Check compatible versions, licenses, maintainability, correctness and dedicated/integrated server behavior **before** importing code.
 
 Do not vendor external projects without a license review.
 

@@ -57,6 +57,7 @@ See [Development Guide](docs/DEVELOPMENT.md) for setup details and [Architecture
 ## Documentation
 
 - [Architecture and design principles](docs/ARCHITECTURE.md)
+- [Technical research: existing agent and NPC projects](docs/PROJECT-RESEARCH.md)
 - [Development setup](docs/DEVELOPMENT.md)
 - [Roadmap](docs/ROADMAP.md)
 - [AI message and task protocol](docs/AI-PROTOCOL.md)

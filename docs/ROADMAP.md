@@ -11,6 +11,7 @@ Feature status is tracked here. **Unchecked means not implemented.** Versions de
 - [x] CI build verified on GitHub Actions
 
 ## v0.1 — First usable companion
+- [ ] Run and document the [SecondBrainEngine/Carpet compatibility spike](PROJECT-RESEARCH.md#9-implementation-recommendation-and-acceptance-tests)
 - [ ] Spawn/despawn one persistent, visible Fake Player or equivalent NPC
 - [ ] Follow / come here / stop commands
 - [ ] Navigate around obstacles without teleport shortcuts
