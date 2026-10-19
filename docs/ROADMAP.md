@@ -8,7 +8,7 @@ Feature status is tracked here. **Unchecked means not implemented.** Versions de
 - [x] `@nexus` prefix parsing and private deterministic replies
 - [x] JUnit tests for the pure chat router
 - [x] Architecture, development and contribution documentation
-- [ ] CI build verified on GitHub Actions
+- [x] CI build verified on GitHub Actions
 
 ## v0.1 — First usable companion
 - [ ] Spawn/despawn one persistent, visible Fake Player or equivalent NPC
