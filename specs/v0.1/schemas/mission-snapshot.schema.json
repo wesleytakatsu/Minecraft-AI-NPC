@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nexus mission snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "missionId",
+    "ownerUuid",
+    "npcUuid",
+    "type",
+    "state",
+    "args",
+    "startedAt",
+    "updatedAt",
+    "completedUnits",
+    "totalUnits",
+    "errorCode"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "missionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "ownerUuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "npcUuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "type": {
+      "enum": [
+        "FOLLOW",
+        "COME_HERE",
+        "DIG_TUNNEL"
+      ]
+    },
+    "state": {
+      "enum": [
+        "QUEUED",
+        "PLANNING",
+        "RUNNING",
+        "PAUSED",
+        "COMPLETED",
+        "FAILED",
+        "CANCELLED"
+      ]
+    },
+    "args": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedUnits": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "totalUnits": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "errorCode": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    }
+  },
+  "description": "Transport/documentation schema; internal Java persistence format is not required to use JSON."
+}

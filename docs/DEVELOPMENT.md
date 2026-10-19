@@ -1,5 +1,7 @@
 # Development guide
 
+Read [the specifications index](../specs/README.md) before implementing features. Requirements IDs, test scenarios, release gates, and a backend experiment checklist are versioned there.
+
 ## Requirements
 
 - JDK **17**

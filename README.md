@@ -39,7 +39,7 @@ Messages beginning with `@nexus` are intercepted server-side and answered privat
 | v0.6 | More intelligent hostile mobs |
 | v0.7+ | Long-term memory, advanced autonomy, multiple companions |
 
-See [ROADMAP](docs/ROADMAP.md) for acceptance criteria and scope boundaries.
+See [ROADMAP](docs/ROADMAP.md) for broad milestones. The **authoritative v0.1 requirements, implementation plan, contracts and acceptance tests** live in [specs/README.md](specs/README.md) (specifications in Brazilian Portuguese).
 
 ## Development
 
@@ -59,6 +59,8 @@ See [Development Guide](docs/DEVELOPMENT.md) for setup details and [Architecture
 Every successful push to `main` publishes a **development pre-release** containing a checked, installable JAR. See [Releases](https://github.com/wesleytakatsu/Minecraft-AI-NPC/releases) and [CI documentation](docs/CI-RELEASES.md). Pre-releases are experimental; no NPC is spawned in v0.0.1.
 
 ## Documentation
+
+- **[Versioned specifications and first-release plan](specs/README.md)** — v0.1 product requirements, architecture, backend spike, protocols, mission model, test matrix, delivery plan, decision log and machine-readable schemas
 
 - [Architecture and design principles](docs/ARCHITECTURE.md)
 - [Technical research: existing agent and NPC projects](docs/PROJECT-RESEARCH.md)

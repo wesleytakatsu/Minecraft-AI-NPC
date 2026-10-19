@@ -1,6 +1,6 @@
 # AI message and task protocol (proposal)
 
-This protocol is **not implemented in v0.0.1**. It documents a stable boundary between dialogue, intent detection and action execution.
+This protocol is **not implemented in v0.0.1**. It documents a stable boundary between dialogue, intent detection and action execution. For the upcoming v0.1, [the versioned spec](../specs/v0.1/03-CHAT-AND-AI.md) and its [normalized JSON Schema](../specs/v0.1/schemas/intent-result.schema.json) take precedence over this historical proposal.
 
 ## Messages
 

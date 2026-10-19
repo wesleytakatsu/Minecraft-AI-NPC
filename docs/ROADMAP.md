@@ -12,6 +12,8 @@ Feature status is tracked here. **Unchecked means not implemented.** Versions de
 - [x] Automated headless server smoke test and pre-release publishing verified on GitHub Actions
 
 ## v0.1 — First usable companion
+
+**Execution source of truth:** [v0.1 specs](../specs/README.md), specifically [product requirements](../specs/v0.1/00-PRODUCT.md), [delivery sequence](../specs/v0.1/07-DELIVERY-PLAN.md) and [release test gate](../specs/v0.1/06-TEST-PLAN.md). These documents are proposals, **not completed features**.
 - [ ] Run and document the [SecondBrainEngine/Carpet compatibility spike](PROJECT-RESEARCH.md#9-implementation-recommendation-and-acceptance-tests)
 - [ ] Spawn/despawn one persistent, visible Fake Player or equivalent NPC
 - [ ] Follow / come here / stop commands
@@ -23,7 +25,7 @@ Feature status is tracked here. **Unchecked means not implemented.** Versions de
 - [ ] Graceful behavior with missing AI credentials or network access
 - [ ] Integration test world with documented reproduction steps
 
-**Acceptance:** a player can spawn the companion, ask it to follow, order a 10-block tunnel, stop the job and get an accurate status. No special permissions, invisible breaking or model calls per tick.
+**Acceptance:** an operator can spawn the companion; its authorized owner can ask it to follow, dig a 10-block tunnel, stop the job and get accurate status in ordinary survival mechanics. No invisible block breaking or model calls per tick. See mandatory [T-01..T-20 acceptance scenarios](../specs/v0.1/06-TEST-PLAN.md).
 
 ## v0.2 — Gathering
 - [ ] Trees, drops and replanting

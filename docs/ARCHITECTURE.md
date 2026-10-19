@@ -1,6 +1,6 @@
 # Architecture
 
-> Design document, not a claim that these subsystems are implemented.
+> Design document, not a claim that these subsystems are implemented. The versioned, more detailed source of truth for the first usable release is [specs/v0.1/01-ARCHITECTURE.md](../specs/v0.1/01-ARCHITECTURE.md), with contracts and a backend decision gate.
 
 ## Priorities
 

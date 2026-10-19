@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nexus intent result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "intent",
+    "arguments",
+    "requires_clarification",
+    "clarification_question"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "intent": {
+      "enum": [
+        "CHAT",
+        "HELP",
+        "STATUS",
+        "FOLLOW",
+        "COME_HERE",
+        "STOP",
+        "DIG_TUNNEL",
+        "UNKNOWN"
+      ]
+    },
+    "arguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "width": {
+          "const": 1
+        },
+        "height": {
+          "const": 2
+        }
+      }
+    },
+    "requires_clarification": {
+      "type": "boolean"
+    },
+    "clarification_question": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 300
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "intent": {
+            "const": "DIG_TUNNEL"
+          }
+        },
+        "required": [
+          "intent"
+        ]
+      },
+      "then": {
+        "properties": {
+          "arguments": {
+            "required": [
+              "length",
+              "width",
+              "height"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "description": "Only the normalized DTO used by Nexus. Validate command permission/context separately; this schema does not authorize execution."
+}

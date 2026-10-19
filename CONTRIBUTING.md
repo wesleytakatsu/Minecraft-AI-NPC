@@ -4,7 +4,7 @@ Thanks for helping build Minecraft AI NPC!
 
 ## Getting started
 
-Read the [Development Guide](docs/DEVELOPMENT.md), [Architecture](docs/ARCHITECTURE.md), and [Roadmap](docs/ROADMAP.md).
+Read the [Development Guide](docs/DEVELOPMENT.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), and [Versioned Specs](specs/README.md).
 
 1. Open an issue to describe a bug, proposed feature or integration.
 2. Create a small focused branch and commit your changes.
@@ -14,6 +14,8 @@ Read the [Development Guide](docs/DEVELOPMENT.md), [Architecture](docs/ARCHITECT
 ## Guidelines
 
 - Target Minecraft 1.20.1, Fabric and Java 17.
+- Update the relevant `specs/v0.1/` file and linked FR/T requirements when behavior changes; add tests and evidence. New versions must have a new spec folder.
+- Follow [the v0.1 release gates](specs/v0.1/06-TEST-PLAN.md) before representing an NPC feature as implemented.
 - Prefer deterministic mechanics over high-frequency remote AI calls.
 - Keep model-generated output behind schema checks and permission gates.
 - Preserve the author's BSD 3-Clause copyright and license notices.
