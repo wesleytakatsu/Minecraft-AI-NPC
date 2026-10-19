@@ -34,6 +34,7 @@
 | T-18 | Desligamento / lifecycle | FR-16 | Controladores e threads liberados sem seguir executando |
 | T-19 | FPS/TPS e carga de 1 NPC | NFR-01, NFR-02, NFR-04 | Sem bloqueio de tick por HTTP ou loop de replanejamento permanente |
 | T-20 | JAR reprodutível e release | NFR-07 | Mesmo commit testado e publicado com checksum e versão correta |
+| T-21 | Handover de ferramenta | FR-17 | Uma picareta sai da mão do dono e é equipada no NPC, sem criação/perda de itens; erro não altera inventários |
 
 ## Massas de teste / fixtures
 
@@ -53,7 +54,7 @@ Regra para testes de bloco: utilizar snapshots de blocos antes/depois; para iten
 **Em PR e push de main:** JUnit + contrato mock + build + smoke de inicialização + GameTests (assim que disponíveis). Qualquer erro bloqueia publicação da pré-release do commit.
 
 **Para tag estável `v0.1.0`:**
-- Todos os testes T-01..T-20 concluídos sem falhas bloqueantes.
+- Todos os testes T-01..T-21 concluídos sem falhas bloqueantes.
 - T-04..T-11 repetidos em servidor real com obstáculos e limites; anexar vídeo/log quando necessário.
 - Teste de integração com **um** provedor LLM e teste real do JEV *se* a compatibilidade com fornecedor for anunciada na release; sem credenciais em CI.
 - Nenhuma duplicação/perda de itens observada nos casos de teste; nenhuma ação após STOP.

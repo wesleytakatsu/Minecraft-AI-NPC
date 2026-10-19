@@ -34,6 +34,10 @@ Reutilização do SecondBrainEngine (LGPL-3.0) deve passar por revisão de licen
 
 Adicionar framework GameTest compatível com Fabric API 1.20.1, validar entidades/blocos/inventário/drops, rodar no CI. Não copiar configuração de versão recente do Loom sem teste.
 
+## ADR-009 — Transferência mínima de picareta, sem GUI (ACEITO)
+
+A v0.1 precisa de ferramenta real para `DIG_TUNNEL`. Para evitar introduzir baús/crafting ou dar itens gratuitos, incluir `/nexus handover`: mover exatamente uma picareta da mão do dono para o Fake Player, preservando NBT/durabilidade e verificando conservação. A GUI de inventário fica para versão futura. Issue [#10](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/10).
+
 ## Perguntas abertas e experimento para fechá-las
 
 | Pergunta | Experimento ou evidência necessária |

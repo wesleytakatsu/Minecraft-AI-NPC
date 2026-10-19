@@ -32,6 +32,7 @@
 
 - [ ] Comandos `/nexus spawn`, `/nexus remove` e proprietário.
 - [ ] Um NPC com UUID fixo, session cleanup e status verdadeiro.
+- [ ] `/nexus handover` com transferência conservativa de uma picareta da mão principal.
 - [ ] FOLLOW, COME_HERE, STOP sem model call.
 - [ ] Persistência de NPC/mission snapshot; restart coerente.
 
@@ -73,6 +74,7 @@ Issues adicionais já criadas:
 - [#7 — Túnel 1x2 e mineração real](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/7) ⇒ P4.
 - [#8 — GameTests integrados ao CI](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/8) ⇒ P6.
 - [#9 — Revisão e release estável v0.1.0](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/9) ⇒ P6.
+- [#10 — Entrega de ferramenta sem duplicação](https://github.com/wesleytakatsu/Minecraft-AI-NPC/issues/10) ⇒ P2.
 
 **Chat ACL** permanece na #3 e na #5, com testes T-03. Limitar PRs ao escopo de uma issue ou etapa. PR que muda comportamento atualiza as specs e testes no mesmo commit.
 

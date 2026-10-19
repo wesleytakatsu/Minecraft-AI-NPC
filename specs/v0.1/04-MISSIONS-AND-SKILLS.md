@@ -36,6 +36,17 @@ Cada missão contém: `missionId`, `ownerUuid`, `npcUuid`, `type`, `state`, `arg
 - Se caminho impossível, devolver `UNREACHABLE` após tentativas limitadas; nunca ficar preso infinitamente.
 - Evitar caminhos perigosos quando existirem alternativas; política de risco passa por código.
 
+## HANDOVER — fornecer uma picareta na v0.1
+
+`/nexus handover` é o caminho mínimo para colocar uma ferramenta real no NPC **sem precisar construir a GUI de inventário**:
+1. Verificar dono/op autorizado, presença do NPC, mesma dimensão, posição/interação permitida e picareta na mão principal.
+2. Verificar inventário/equipamento do NPC e planejar uma transação de **um** `ItemStack` de picareta (durabilidade e NBT preservados).
+3. Transferir por APIs de inventário corretas, apenas na thread do servidor. Se falhar, manter ambos os inventários inalterados.
+4. Equipar a ferramenta no slot apropriado; verificar item original ausente do jogador e presente no NPC exatamente uma vez.
+5. Caso já tenha uma ferramenta ou não haja espaço para guardar a anterior, reportar impedimento. Nenhuma ferramenta é criada gratuitamente.
+
+Essa operação não autoriza coletar itens em baús. Confirmar conservação especialmente no backend do SecondBrainEngine, pois o upstream possui rotina de contêiner suspeita.
+
 ## DIG_TUNNEL — v0.1
 
 O formato é fixo: **1 bloco de largura, 2 de altura, N segmentos de comprimento**, `N` no intervalo 1..32 (comando mínimo demonstrado: 10). Ângulo horizontal é discretizado em Norte/Sul/Leste/Oeste **no início** e não muda durante a execução.

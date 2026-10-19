@@ -20,12 +20,13 @@ Feature status is tracked here. **Unchecked means not implemented.** Versions de
 - [ ] Navigate around obstacles without teleport shortcuts
 - [ ] Excavate a small tunnel using normal block-breaking mechanics
 - [ ] Respect tool requirements, tool durability, drops, liquids and protected blocks
+- [ ] Support `/nexus handover` to transfer a real pickaxe from the player's hand without duplication
 - [ ] Mission state, progress report and reliable cancellation
 - [ ] Pluggable LLM dialogue and JEV intent classification, both optional
 - [ ] Graceful behavior with missing AI credentials or network access
 - [ ] Integration test world with documented reproduction steps
 
-**Acceptance:** an operator can spawn the companion; its authorized owner can ask it to follow, dig a 10-block tunnel, stop the job and get accurate status in ordinary survival mechanics. No invisible block breaking or model calls per tick. See mandatory [T-01..T-20 acceptance scenarios](../specs/v0.1/06-TEST-PLAN.md).
+**Acceptance:** an operator can spawn the companion; its authorized owner can ask it to follow, dig a 10-block tunnel, stop the job and get accurate status in ordinary survival mechanics. No invisible block breaking or model calls per tick. See mandatory [T-01..T-21 acceptance scenarios](../specs/v0.1/06-TEST-PLAN.md).
 
 ## v0.2 — Gathering
 - [ ] Trees, drops and replanting

@@ -58,7 +58,7 @@ Valores são **propostos**, não configuração implementada. Carregar API keys 
 | Chat não solicitado gera tokens | Prefixo, opt-in e limites de taxa/filas |
 | IA responde após STOP | `requestId`/generation counter + checagem de estado |
 | Destruição de área/baús protegidos | Limites de geometria, validação de blocos e ACL antes de cada ação |
-| Falhas de backend duplicam itens | Testes de conservação e respeito a durabilidade; sem invocar rotinas de baú suspeitas |
+| Falhas de backend duplicam itens | Testes de conservação em `/nexus handover`, respeito a durabilidade; sem invocar rotinas de baú suspeitas |
 | HTTP acessa destinos perigosos | URLs de provedores configuradas somente por administrador, nunca pelo chat |
 | DDoS via player/NPC | 1 NPC inicial, 1 missão ativa, limite de HTTP, rate-limit e máximo 32 segmentos |
 | Dados do mundo em serviço externo | Enviar apenas contexto resumido e necessário; mascarar segredos e histórico alheio |

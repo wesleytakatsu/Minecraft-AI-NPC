@@ -12,7 +12,7 @@ Um jogador pode instalar o mod em um servidor Fabric (ou no servidor integrado),
 2. Aparece um personagem com nome e aparência padrão de jogador.
 3. `@nexus me siga` → Nexus acompanha com distância segura.
 4. `@nexus venha aqui` → desloca-se até perto de quem pediu.
-5. Jogador equipa Nexus com picareta permitida (forma de equipar deve estar documentada e testada).
+5. Jogador coloca uma picareta na mão principal e usa `/nexus handover`, transferindo exatamente uma ferramenta do inventário do jogador para Nexus, sem criação de itens.
 6. `@nexus cave um túnel de 10 blocos` → abre um túnel 1x2 à frente de sua orientação inicial, se for seguro.
 7. `@nexus status` → mostra etapa, blocos removidos e impedimentos.
 8. `@nexus pare` → interrompe sem novas quebras e preserva progresso.
@@ -55,6 +55,7 @@ Um jogador pode instalar o mod em um servidor Fabric (ou no servidor integrado),
 | FR-14 | Decisão opcional | JEV escolhe intenções de conjunto fechado para solicitações ambíguas; a execução passa por validação Java |
 | FR-15 | Desambiguação | Pergunta `você consegue minerar?` **não inicia** missão; ordens incompletas pedem parâmetro |
 | FR-16 | Desligamento | Remoção/desligamento libera workers, sessões de pathfinding e estado persistente consistente |
+| FR-17 | Entregar ferramenta | `/nexus handover` transfere exatamente uma picareta da mão principal do dono para o NPC, equipa-a e verifica conservação, sem GUI de baú |
 
 ## 4. Requisitos não funcionais
 
@@ -78,6 +79,7 @@ Um jogador pode instalar o mod em um servidor Fabric (ou no servidor integrado),
 | `/nexus spawn` | Local, operador | Cria companheiro se área segura e não existir |
 | `/nexus remove` | Local, operador | Cancela missão e remove com limpeza |
 | `/nexus status` | Local | Estado confiável |
+| `/nexus handover` | Local, dono/op | Transfere uma picareta da mão principal ao NPC, se houver espaço e autorização |
 | `@nexus me siga` | Local | Entra em FOLLOW |
 | `@nexus venha aqui` | Local | Inicia COME_HERE |
 | `@nexus pare` | Local prioritário | Cancela objetivo em execução |
@@ -90,6 +92,6 @@ Comandos sem `@nexus` não devem acionar o companheiro, exceto `/nexus`. Textos 
 
 ## 6. Definição de pronto
 
-A versão v0.1.0 só é aceitável quando FR-01 a FR-12, FR-15, FR-16 e NFR-01 a NFR-09 passarem. FR-13 e FR-14 exigem implementações opcionais **testadas com mock** e caminho real configurável; indisponibilidade de provedores nunca impede o modo offline. O bloqueio de ações desconhecidas é obrigatório.
+A versão v0.1.0 só é aceitável quando FR-01 a FR-12, FR-15 a FR-17 e NFR-01 a NFR-09 passarem. FR-13 e FR-14 exigem implementações opcionais **testadas com mock** e caminho real configurável; indisponibilidade de provedores nunca impede o modo offline. O bloqueio de ações desconhecidas é obrigatório.
 
 As histórias de teste vinculadas encontram-se em [06-TEST-PLAN.md](06-TEST-PLAN.md).
