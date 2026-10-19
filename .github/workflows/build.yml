@@ -121,7 +121,7 @@ jobs:
             exit 0
           fi
 
-          printf 'Automated development build from commit [%s](https://github.com/%s/commit/%s).\\n\\n' "$GITHUB_SHA" "$GITHUB_REPOSITORY" "$GITHUB_SHA" > release-notes.md
+          printf 'Automated development build from commit [%s](https://github.com/%s/commit/%s).\n\n' "$GITHUB_SHA" "$GITHUB_REPOSITORY" "$GITHUB_SHA" > release-notes.md
           cat >> release-notes.md <<'EOF'
           **Experimental preview — not a stable release.**
           Current prototype supports basic `@nexus` chat routing and `/nexus` diagnostic commands only.
