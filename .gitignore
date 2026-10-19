@@ -1,0 +1,29 @@
+# Gradle and builds
+.gradle/
+build/
+out/
+run/
+logs/
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets.properties
+local.properties
+
+# OS
+.DS_Store
+Thumbs.db
