@@ -20,6 +20,16 @@ gradle runServer
 
 On the first `runServer`, accept Minecraft's EULA in the generated server run directory before restarting.
 
+## CI and pre-releases
+
+The GitHub Actions workflow runs `gradle clean build`, checks the production JAR, starts a headless Fabric server and publishes a pre-release for every passing `main` commit. Details: [CI and releases](CI-RELEASES.md).
+
+To run the server-startup smoke test locally (note that this writes `eula=true` into the test server; read the Minecraft EULA first):
+
+```bash
+bash scripts/ci-smoke-server.sh
+```
+
 ## Smoke test
 
 1. Start Minecraft 1.20.1 with the Fabric development environment.

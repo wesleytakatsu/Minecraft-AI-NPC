@@ -1,5 +1,7 @@
 # Minecraft AI NPC
 
+[![Build, test and development release](https://github.com/wesleytakatsu/Minecraft-AI-NPC/actions/workflows/build.yml/badge.svg)](https://github.com/wesleytakatsu/Minecraft-AI-NPC/actions/workflows/build.yml)
+
 An AI-powered NPC companion mod for **Minecraft Java Edition 1.20.1**, built with **Fabric**.
 
 > **Status: early prototype (v0.0.1).** The mod currently registers a basic chat prefix and diagnostic commands. **There is no spawned NPC, pathfinding, LLM connection, or JEV integration yet.** Those are planned features, not released functionality.
@@ -54,11 +56,14 @@ gradle runServer
 
 See [Development Guide](docs/DEVELOPMENT.md) for setup details and [Architecture](docs/ARCHITECTURE.md) for technical decisions.
 
+Every successful push to `main` publishes a **development pre-release** containing a checked, installable JAR. See [Releases](https://github.com/wesleytakatsu/Minecraft-AI-NPC/releases) and [CI documentation](docs/CI-RELEASES.md). Pre-releases are experimental; no NPC is spawned in v0.0.1.
+
 ## Documentation
 
 - [Architecture and design principles](docs/ARCHITECTURE.md)
 - [Technical research: existing agent and NPC projects](docs/PROJECT-RESEARCH.md)
 - [Development setup](docs/DEVELOPMENT.md)
+- [Automated tests and development releases](docs/CI-RELEASES.md)
 - [Roadmap](docs/ROADMAP.md)
 - [AI message and task protocol](docs/AI-PROTOCOL.md)
 - [Contributing](CONTRIBUTING.md)

@@ -1,27 +1,144 @@
-name: Build and test
+name: Build, test and development release
 
 on:
   push:
     branches: [main]
   pull_request:
 
+# Release permissions are granted only to the publishing job.
 permissions:
   contents: read
 
 jobs:
-  build:
+  build-and-test:
+    name: Fabric build + JUnit + server smoke test
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
+
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+
       - name: Set up Gradle 8.12.1
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.12.1'
-      - name: Build and test
-        run: gradle --no-daemon build
+
+      - name: Build mod and run JUnit tests
+        run: gradle --no-daemon --stacktrace clean build
+
+      - name: Validate production JAR and prepare development artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t jars < <(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*-sources.jar' ! -name '*-dev.jar' | sort)
+          if (( ${#jars[@]} != 1 )); then
+            echo "::error::Expected exactly one production JAR, found ${#jars[@]}"
+            ls -la build/libs || true
+            exit 1
+          fi
+
+          # Check the remapped production JAR contains valid Fabric metadata.
+          unzip -p "${jars[0]}" fabric.mod.json | python3 -c '
+          import json, sys
+          mod = json.load(sys.stdin)
+          assert mod["id"] == "minecraft_ai_npc", "Unexpected Fabric mod ID"
+          assert mod["depends"]["minecraft"] == "1.20.1", "Wrong Minecraft version"
+          assert mod["version"] and "$" not in mod["version"], "Unexpanded version placeholder"
+          print("Validated Fabric metadata:", mod["id"], mod["version"])
+          '
+
+          mkdir -p dist
+          short_sha="${GITHUB_SHA:0:12}"
+          base_name="$(basename "${jars[0]}" .jar)"
+          cp "${jars[0]}" "dist/${base_name}-dev-${short_sha}.jar"
+          (cd dist && sha256sum ./*.jar > SHA256SUMS.txt)
+
+      - name: Start Minecraft Fabric server and check mod initialization
+        shell: bash
+        timeout-minutes: 12
+        run: bash scripts/ci-smoke-server.sh
+
+      - name: Upload test results and diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ github.run_id }}
+          path: |
+            build/test-results/test/
+            build/reports/tests/test/
+            server-smoke.log
+            run/logs/latest.log
+            run/crash-reports/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload verified development JAR
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-jar-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
+
+  development-release:
+    name: Publish development pre-release
+    needs: build-and-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download verified JAR
+        uses: actions/download-artifact@v4
+        with:
+          name: dev-jar-${{ github.sha }}
+          path: dist/
+
+      - name: Create or retain immutable development pre-release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          short_sha="${GITHUB_SHA:0:12}"
+          tag="dev-${short_sha}"
+          test -f dist/SHA256SUMS.txt
+          compgen -G 'dist/*.jar' > /dev/null
+
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Pre-release $tag already exists. Keeping the published build unchanged."
+            exit 0
+          fi
+
+          cat > release-notes.md <<EOF
+          Automated development build from commit [${GITHUB_SHA}](https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}).
+
+          **Experimental preview — not a stable release.**
+          Current prototype supports basic `@nexus` chat routing and `/nexus` diagnostic commands only.
+          The NPC, pathfinding, LLM and JEV integrations are **not yet implemented**.
+
+          **Verification:** Gradle compilation, JUnit tests, production JAR metadata validation, and a headless Fabric server initialization smoke test all passed.
+
+          **Requirements:** Minecraft Java 1.20.1, Fabric Loader, Fabric API, Java 17.
+          Download the JAR attached below and verify it using `SHA256SUMS.txt` if desired.
+          EOF
+
+          gh release create "$tag" dist/* \
+            --target "$GITHUB_SHA" \
+            --title "Minecraft AI NPC — development ${short_sha}" \
+            --notes-file release-notes.md \
+            --prerelease \
+            --latest=false
+
+          echo "Published https://github.com/${GITHUB_REPOSITORY}/releases/tag/${tag}"

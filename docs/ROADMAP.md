@@ -8,7 +8,8 @@ Feature status is tracked here. **Unchecked means not implemented.** Versions de
 - [x] `@nexus` prefix parsing and private deterministic replies
 - [x] JUnit tests for the pure chat router
 - [x] Architecture, development and contribution documentation
-- [x] CI build verified on GitHub Actions
+- [x] Initial CI build verified on GitHub Actions
+- [ ] Automated headless server smoke test and pre-release publishing verified on GitHub Actions
 
 ## v0.1 — First usable companion
 - [ ] Run and document the [SecondBrainEngine/Carpet compatibility spike](PROJECT-RESEARCH.md#9-implementation-recommendation-and-acceptance-tests)
